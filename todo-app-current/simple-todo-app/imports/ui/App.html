@@ -1,0 +1,57 @@
+﻿<body>
+    {{> mainContainer}}
+</body>
+
+
+<template name="mainContainer">
+    <div class="app">
+        <header>
+            <div class="app-bar">
+                <div class="app-header">
+                    <h1>📝️ To Do List {{incompleteCount}}</h1>
+                </div>
+            </div>
+        </header>
+
+        <div class="main">
+            {{> form }}
+
+            <div class="filter">
+                <button id="hide-completed-button">
+                    {{#if hideCompleted}}
+                    Show All
+                    {{else}}
+                    Hide Completed
+                    {{/if}}
+                </button>
+            </div>
+
+            <ul class="tasks">
+                {{#each tasks}}
+                {{> task}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</template>
+
+<template name="form">
+    <form class="task-form">
+        <input type="text" name="text" placeholder="Type to add new tasks" />
+        <button type="submit">Add Task</button>
+    </form>
+</template>
+
+<!-- Modal Structure -->
+<template name="deleteConfirmationModal">
+    <div class="modal" id="delete-modal" style="display: none;">
+        <div class="modal-content">
+            <h4>Confirm Deletion</h4>
+            <p>Are you sure you want to delete this task?</p>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-close cancel-btn">Cancel</button>
+            <button class="modal-confirm delete-btn">Delete</button>
+        </div>
+    </div>
+</template>
